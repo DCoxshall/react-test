@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Project from "./components/Project";
+import projectData from "./projects.json";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [projects, setProjects] = useState(projectData.projects);
+    console.log(projects);
+    return (
+        <div id="showCase">
+            {projects.length > 0
+                ? projects.map((project) => (
+                      <Project
+                          key={project.id}
+                          title={project.title}
+                          description={project.description}
+                      />
+                  ))
+                : "No projects here"}
+        </div>
+    );
 }
 
 export default App;
+
+//Components I'm gonna need:
+//Container for all projects
+//Title of project
+//box containing canvas or picture
+//Description of project
